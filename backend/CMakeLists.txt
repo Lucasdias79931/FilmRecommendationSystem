@@ -9,6 +9,7 @@ include_directories(include)
 file(GLOB_RECURSE SOURCES 
     src/*.cpp
     lib/*.cpp
+    lib/*tpp
 )
 
 add_executable(movie_app ${SOURCES})

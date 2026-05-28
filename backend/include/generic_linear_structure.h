@@ -21,10 +21,18 @@ class Generic_Linear_structure{
      * @note This class is intended to be extended, not used directly.
      */
     private:
-        Linear_node *head;
-        Linear_node *tail;
+        Linear_node<T>* head;
+        Linear_node<T>* tail;
         size_t size;
         bool _isEmpty() const;
-        void _insert_in_last(T data);
-        
+        void _insert_in_last(const T&data);
+        T _get_last();
+    public:
+        Generic_Linear_structure(T data);
+        Generic_Linear_structure();
+
+
 };
+
+
+#include "generic_linear_structure.tpp"
