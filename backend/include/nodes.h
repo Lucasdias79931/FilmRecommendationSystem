@@ -1,12 +1,12 @@
 #pragma once 
 
 template <typename T>
-class Node_lists{
+class Linear_node{
     T data;
-    Node_lists<T> *prev, *next;
+    Linear_node<T> *prev, *next;
 
-    Node_lists(T data):data(data), prev(nullptr), next(nullptr){}
-    Node_lists(): prev(nullptr), next(nullptr){}
+    Linear_node(T data):data(data), prev(nullptr), next(nullptr){}
+    Linear_node(): prev(nullptr), next(nullptr){}
 };
 
 
