@@ -45,3 +45,18 @@ T Generic_Linear_structure<T>::_get_last() {
 
     return tail->data;
 }
+
+template <typename T>
+Generic_Linear_structure<T>::~Generic_Linear_structure() {
+    Linear_node<T>* current = head;
+
+    while (current != nullptr) {
+        Linear_node<T>* temp = current;
+        current = current->next;
+        delete temp;
+    }
+
+    head = nullptr;
+    tail = nullptr;
+    size = 0;
+}

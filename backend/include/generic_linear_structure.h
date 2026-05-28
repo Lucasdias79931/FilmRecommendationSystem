@@ -31,7 +31,7 @@ class Generic_Linear_structure{
         Generic_Linear_structure(T data);
         Generic_Linear_structure();
 
-
+        virtual ~Generic_Linear_structure();
 };
 
 
