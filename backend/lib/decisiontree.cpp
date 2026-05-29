@@ -3,7 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 
-DecisionTree::DecisionTree() : root(nullptr), size(0) {
+DecisionTree::DecisionTree() : root(nullptr) {
     buildTree();
 }
 

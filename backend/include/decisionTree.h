@@ -9,33 +9,33 @@
 using json = nlohmann::json;
 
 class DecisionTree {
-private:
-    struct Node {
-        std::string id;
-        std::string question;
+    private:
+        struct Node {
+            std::string id;
+            std::string question;
 
-        Node* yes;
-        Node* no;
+            Node* yes;
+            Node* no;
 
-        bool isLeaf;
-        Filters filters;
-    };
+            bool isLeaf;
+            Filters filters;
+        };
 
-    Node* root;
-    size_t size;
+        Node* root;
+        size_t size;
 
-    void buildTree();
-    Node* buildNode(const json& j); 
+        void buildTree();
+        Node* buildNode(const json& j); 
 
-    void destroy(Node* node);
+        void destroy(Node* node);
 
-    Node* findNode(Node* node, const std::string& id);
+        Node* findNode(Node* node, const std::string& id);
 
-public:
-    DecisionTree();
-    ~DecisionTree();
+    public:
+        DecisionTree():root(nullptr){}
+        ~DecisionTree();
 
-    Node* getNode(const std::string& id);
-    Node* nextNode(const std::string& id, bool answer);
+        Node* getNode(const std::string& id);
+        Node* nextNode(const std::string& id, bool answer);
 
 };
