@@ -23,11 +23,3 @@ struct Linear_node{
 
 
 
-template <typename T>
-struct Node_RedBlackTree{
-    T data;
-    Node_RedBlackTree<T> *left, *right;
-    bool black
-    Node_RedBlackTree(T data):data(data), black(true), left(nullptr), right(nullptr);
-    Node_RedBlackTree():left(nullptr), right(nullptr), black(true);
-};

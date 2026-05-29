@@ -1,17 +1,39 @@
 #pragma once
-#include "structs.h"
-#include "enums.h"
-#include <iostream>
+
+#include "structs.h"      
+#include "linked_list.h"  
+#include "enums.h"        
+
+class RedBlackTree {
+private:
+    struct Node {
+        CategoryMovie key;          
+        Linked_list<Movie> movies;  
+
+        Node* left;
+        Node* right;
+
+        bool isRed;
+
+        Node(CategoryMovie key, const Movie& movie):key(key), movies(movie){}
+    };
+
+    Node* root;
+    size_t size;
 
 
+    
+    Node* rotateLeft(Node* node);
+    Node* rotateRight(Node* node);
+    void flipColors(Node* node);
 
+    bool isRed(Node* node);
 
-template <typename T>
-class RedBlackTree{
-    private:
-        Node_tree *root;
+    void destroy(Node* node); 
 
     public:
-        void insert(T data);
-        
+        RedBlackTree();
+        ~RedBlackTree();
+
+        void insert(CategoryMovie key, const Movie& movie);
 };
