@@ -1,7 +1,5 @@
-#include <string>
-#include <iostream>
 #include "enums.h"
-
+#include <stdexcept>
 
 std::string categoryToString(CategoryMovie category) {
     switch (category) {
@@ -30,4 +28,25 @@ CategoryMovie stringToCategory(const std::string& str) {
     if (str == "Animation") return CategoryMovie::Animation;
 
     throw std::invalid_argument("Invalid category");
+}
+
+Origin stringToOrigin(const std::string& str) {
+    if (str == "National") return Origin::National;
+    if (str == "Foreign") return Origin::Foreign;
+
+    throw std::invalid_argument("Invalid origin");
+}
+
+Style stringToStyle(const std::string& str) {
+    if (str == "Realistic") return Style::Realistic;
+    if (str == "Fantasy") return Style::Fantasy;
+
+    throw std::invalid_argument("Invalid style");
+}
+
+Pace stringToPace(const std::string& str) {
+    if (str == "Fast") return Pace::Fast;
+    if (str == "Slow") return Pace::Slow;
+
+    throw std::invalid_argument("Invalid pace");
 }

@@ -6,9 +6,30 @@
 struct Movie {
     std::string name;
     CategoryMovie category;
-    size_t year;
 
-    Movie(const std::string& name, CategoryMovie category, size_t year): name(name), category(category), year(year) {}
+    std::string origin;
+    std::string style; 
+    std::string pace;  
+
+    size_t year;
+    float rate;
+
+    Movie(
+        const std::string& name,
+        CategoryMovie category,
+        const std::string& origin,
+        const std::string& style,
+        const std::string& pace,
+        size_t year,
+        float rate
+    )
+    : name(name),
+      category(category),
+      origin(origin),
+      style(style),
+      pace(pace),
+      year(year),
+      rate(rate) {}
 };
 
 
@@ -22,4 +43,9 @@ struct Linear_node{
 };
 
 
-
+struct Filters {
+    std::string category;
+    std::string origin;
+    std::string style;
+    std::string pace;
+};
