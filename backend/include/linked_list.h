@@ -4,7 +4,6 @@
 template <typename T>
 class Linked_list final : public Generic_Linear_structure<T> {
     public:
-        void insert(T data, int index);
         Linked_list(T data);
         Linked_list();
 

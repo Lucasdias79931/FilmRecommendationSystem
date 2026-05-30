@@ -49,3 +49,4 @@ struct Filters {
     Style style;
     Pace pace;
 };
+

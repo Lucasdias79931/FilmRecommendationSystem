@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
     file << "{\n  \"movies\": [\n";
 
-    for (int i = 0; i < 400; i++) {
+    for (int i = 0; i < 1000; i++) {
         std::string name = "Movie_" + std::to_string(i + 1);
 
         std::string category = categories[rand() % categories.size()];

@@ -32,7 +32,7 @@ class DecisionTree {
         Node* findNode(Node* node, const std::string& id);
 
     public:
-        DecisionTree():root(nullptr){}
+        DecisionTree();
         ~DecisionTree();
 
         Node* getNode(const std::string& id);

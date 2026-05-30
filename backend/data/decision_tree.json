@@ -1,189 +1,124 @@
 {
   "id": "root",
-  "question": "Quer algo leve/divertido?",
+  "question": "Quer algo mais leve ou mais intenso?",
   "yes": {
-    "id": "n1_yes",
-    "question": "Prefere produções nacionais?",
+    "id": "n1_light",
+    "question": "Prefere nacional ou estrangeiro?",
     "yes": {
-      "id": "n2_yes",
-      "question": "Prefere ritmo rápido?",
+      "id": "n2_national",
+      "question": "Prefere comédia leve ou romance/drama?",
       "yes": {
-        "id": "n3_yes",
-        "question": "Quer foco em emoção?",
-        "yes": {
-          "id": "n4_yes",
-          "question": "Prefere algo realista?",
-          "yes": {
-            "id": "n5_yes",
-            "question": "Quer algo mais leve ou mais denso?",
-            "yes": {
-              "id": "leaf_1",
-              "filters": {
-                "category": "Romance",
-                "origin": "National",
-                "style": "Realistic",
-                "pace": "Fast"
-              }
-            },
-            "no": {
-              "id": "leaf_2",
-              "filters": {
-                "category": "Drama",
-                "origin": "National",
-                "style": "Realistic",
-                "pace": "Fast"
-              }
-            }
-          },
-          "no": {
-            "id": "n5_no",
-            "question": "Quer algo mais leve ou mais denso?",
-            "yes": {
-              "id": "leaf_3",
-              "filters": {
-                "category": "Animation",
-                "origin": "National",
-                "style": "Fantasy",
-                "pace": "Fast"
-              }
-            },
-            "no": {
-              "id": "leaf_4",
-              "filters": {
-                "category": "Comedy",
-                "origin": "National",
-                "style": "Fantasy",
-                "pace": "Fast"
-              }
-            }
-          }
-        },
-        "no": {
-          "id": "n3_no",
-          "question": "Quer foco em ação ou tensão?",
-          "yes": {
-            "id": "leaf_5",
-            "filters": {
-              "category": "Action",
-              "origin": "National",
-              "style": "Realistic",
-              "pace": "Fast"
-            }
-          },
-          "no": {
-            "id": "leaf_6",
-            "filters": {
-              "category": "Thriller",
-              "origin": "National",
-              "style": "Realistic",
-              "pace": "Fast"
-            }
-          }
-        }
-      },
-      "no": {
-        "id": "n2_no",
-        "question": "Prefere ritmo lento?",
-        "yes": {
-          "id": "leaf_7",
-          "filters": {
-            "category": "Drama",
-            "origin": "National",
-            "style": "Realistic",
-            "pace": "Slow"
-          }
-        },
-        "no": {
-          "id": "leaf_8",
-          "filters": {
-            "category": "Documentary",
-            "origin": "National",
-            "style": "Realistic",
-            "pace": "Slow"
-          }
-        }
-      }
-    },
-    "no": {
-      "id": "n2_foreign",
-      "question": "Prefere ritmo rápido?",
-      "yes": {
-        "id": "leaf_9",
+        "id": "leaf_1",
         "filters": {
           "category": "Comedy",
-          "origin": "Foreign",
-          "style": "Fantasy",
+          "origin": "National",
+          "style": "Light",
           "pace": "Fast"
         }
       },
       "no": {
-        "id": "leaf_10",
+        "id": "leaf_2",
         "filters": {
           "category": "Romance",
-          "origin": "Foreign",
+          "origin": "National",
           "style": "Realistic",
           "pace": "Slow"
+        }
+      }
+    },
+    "no": {
+      "id": "n3_foreign",
+      "question": "Prefere fantasia ou realismo?",
+      "yes": {
+        "id": "n4_fantasy",
+        "question": "Ritmo rápido ou lento?",
+        "yes": {
+          "id": "leaf_3",
+          "filters": {
+            "category": "Action",
+            "origin": "Foreign",
+            "style": "Fantasy",
+            "pace": "Fast"
+          }
+        },
+        "no": {
+          "id": "leaf_4",
+          "filters": {
+            "category": "Romance",
+            "origin": "Foreign",
+            "style": "Fantasy",
+            "pace": "Slow"
+          }
+        }
+      },
+      "no": {
+        "id": "n5_realism",
+        "question": "Mais emocional ou neutro?",
+        "yes": {
+          "id": "leaf_5",
+          "filters": {
+            "category": "Drama",
+            "origin": "Foreign",
+            "style": "Realistic",
+            "pace": "Slow"
+          }
+        },
+        "no": {
+          "id": "leaf_6",
+          "filters": {
+            "category": "Comedy",
+            "origin": "Foreign",
+            "style": "Realistic",
+            "pace": "Fast"
+          }
         }
       }
     }
   },
   "no": {
-    "id": "n1_no",
-    "question": "Prefere produções nacionais?",
+    "id": "n6_intense",
+    "question": "Prefere ação/tensão ou drama psicológico?",
     "yes": {
-      "id": "n2_intense_nat",
-      "question": "Quer algo baseado na realidade?",
+      "id": "n7_action",
+      "question": "Ritmo rápido ou lento?",
       "yes": {
-        "id": "leaf_11",
+        "id": "leaf_7",
         "filters": {
-          "category": "Documentary",
-          "origin": "National",
+          "category": "Action",
+          "origin": "Mixed",
+          "style": "Realistic",
+          "pace": "Fast"
+        }
+      },
+      "no": {
+        "id": "leaf_8",
+        "filters": {
+          "category": "Thriller",
+          "origin": "Mixed",
+          "style": "Realistic",
+          "pace": "Slow"
+        }
+      }
+    },
+    "no": {
+      "id": "n8_psych",
+      "question": "Realista ou fantasia?",
+      "yes": {
+        "id": "leaf_9",
+        "filters": {
+          "category": "Drama",
+          "origin": "Foreign",
           "style": "Realistic",
           "pace": "Slow"
         }
       },
       "no": {
-        "id": "leaf_12",
-        "filters": {
-          "category": "Thriller",
-          "origin": "National",
-          "style": "Realistic",
-          "pace": "Fast"
-        }
-      }
-    },
-    "no": {
-      "id": "n2_intense_for",
-      "question": "Prefere algo com fantasia ou ficção?",
-      "yes": {
-        "id": "leaf_13",
+        "id": "leaf_10",
         "filters": {
           "category": "SciFi",
           "origin": "Foreign",
           "style": "Fantasy",
           "pace": "Fast"
-        }
-      },
-      "no": {
-        "id": "n3_intense_for",
-        "question": "Quer algo mais assustador?",
-        "yes": {
-          "id": "leaf_14",
-          "filters": {
-            "category": "Horror",
-            "origin": "Foreign",
-            "style": "Realistic",
-            "pace": "Fast"
-          }
-        },
-        "no": {
-          "id": "leaf_15",
-          "filters": {
-            "category": "Action",
-            "origin": "Foreign",
-            "style": "Realistic",
-            "pace": "Fast"
-          }
         }
       }
     }
