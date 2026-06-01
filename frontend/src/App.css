@@ -1,13 +1,66 @@
-
-.App{
-  text-align: center;
-  padding-top: 3rem;
+.App {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
 }
 
-.App h1{
-  margin-bottom: 2rem;
+header {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(90deg, #070738, #0d0d6b);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+header h1 {
+  font-size: 26px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  padding: 24px;
+
+  max-width: 1400px; 
+  width: 100%; 
+  margin: 0 auto;
+}
+
+aside {
+  flex: 0 0 280px; /* 👈 melhor que % */
+  padding: 20px;
+
+  background: #070738;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+main {
+  flex: 1;
+  padding: 28px;
+
+  background: #070738;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8435de;
+  border-radius: 10px;
+}
+
+::selection {
+  background: #8435de;
+  color: white;
 }

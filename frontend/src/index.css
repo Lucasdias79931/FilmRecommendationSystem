@@ -1,40 +1,54 @@
-*{
-  padding: 0;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: "Raleway", sans-serif;
-  color: white;
 }
 
-
-body,
-html{
+html, body {
   min-height: 100vh;
-  height: 100%;
-  background-color: black;
+  background-color: #050522; /* 👈 mais profundo e menos cansativo */
+  color: #f1f1f1;
 }
 
+/* melhora leitura */
+body {
+  line-height: 1.5;
+}
+
+/* imagens responsivas */
 img {
   max-width: 100%;
+  display: block;
 }
 
-
-button{
-  font-weight: bold;
-  font-size: 1.2rem;
+/* botão mais moderno */
+button {
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  padding: .8rem 1.5rem;
-  background: linear-gradient(
-    90deg, rgba(132,53,222,1)0%,
-    rgba(184, 84, 232, 1)100%
-  );
-  border-radius: 3rem;
+  padding: 0.7rem 1.4rem;
+  background: linear-gradient(90deg, #8435de, #b854e8);
+  border-radius: 999px;
   border: none;
+  color: white;
+
+  transition: all 0.25s ease;
 }
 
+/* hover suave */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(184, 84, 232, 0.4);
+}
 
-button:hover{
-  background: linear-gradient(
-    90deg, rgba(184, 84, 232, 1)0%,
-    rgba(132,53,222,1)100%
-  );
+/* clique */
+button:active {
+  transform: scale(0.97);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

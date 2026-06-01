@@ -1,6 +1,8 @@
 export type CategoryMovie = | "Romance" | "Action" | "Comedy" | "Drama" | "Horror" | "SciFi" | "Documentary" | "Thriller" | "Animation";
+export type IdMovie = string | number;
 
-export type Movie = {
+export interface Movie{
+    id?: IdMovie;
     name: string;
     category: CategoryMovie; 
     origin: string;
@@ -10,15 +12,19 @@ export type Movie = {
     rate: number;
 };
 
+
+
+
 export interface Filters {
     category: CategoryMovie;
     origin: "National" | "Foreign"; 
     style: "Realistic" | "Fantasy";
     pace: "Fast" | "Slow";
 }
-export type DecisionNode = {
+export interface DecisionNode  {
     id: string;
     question?: string;   
     isLeaf: boolean;
     filters?: Filters;   
 }
+
