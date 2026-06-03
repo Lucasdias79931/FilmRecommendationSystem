@@ -23,7 +23,7 @@ export interface Filters {
 }
 export interface DecisionNode  {
     id: string;
-    question?: string;   
+    question?: string[];   
     isLeaf: boolean;
     filters?: Filters;   
 }
