@@ -55,15 +55,15 @@ DecisionTree::Node* DecisionTree::buildNode(const json& j) {
 }
 
 
-DecisionTree::Node* DecisionTree::findNode(Node* node, const std::string& id) {
-    if (!node) return nullptr;
+DecisionTree::Node* DecisionTree::findNode(Node* root, const std::string& id) {
+    if (!root) return nullptr;
 
-    if (node->id == id) return node;
+    if (root->id == id) return root;
 
-    Node* left = findNode(node->yes, id);
+    Node* left = findNode(root->yes, id);
     if (left) return left;
 
-    return findNode(node->no, id);
+    return findNode(root->no, id);
 }
 
 DecisionTree::Node* DecisionTree::getNode(const std::string& id) {
