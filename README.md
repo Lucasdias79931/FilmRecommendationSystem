@@ -19,18 +19,19 @@ The goal is to apply these structures in a real-world scenario by building a sys
 
 * **C++**
 * **gRPC**
+* **oat++**
 
 ### Frontend
 
 * **React**
-
 ## Data Structures Used
 
-* **Linked List** → Store users and movies
-* **Stack** → Manage user watch history
-* **Queue** → Handle recommendation requests
-* **Binary Tree** → Organize and search movies efficiently
-
+* **Linked List** → Stores users and movies  
+* **Stack** → Manages user watch history  
+* **Queue** → Handles recommendation requests  
+* **B+ Tree** → Organizes and searches movies efficiently  
+* **Decision Tree** → Builds filters to recommend movies to users  
+* **Hash Table** → Implements a basic cache  
 ## System Architecture
 
 * The frontend (React) communicates with the backend using **gRPC**
