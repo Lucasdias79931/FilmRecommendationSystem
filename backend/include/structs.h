@@ -45,8 +45,8 @@ struct Linear_node{
 
 struct Filters {
     CategoryMovie category;
-    Origin origin;
-    Style style;
-    Pace pace;
+    std::string origin;
+    std::string style;
+    std::string pace;
 };
 
