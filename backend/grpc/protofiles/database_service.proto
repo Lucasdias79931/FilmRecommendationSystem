@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package database_service;
+
+enum STATUS {
+    DONE = 0;
+    PROCESSING = 1;
+    FAILURE = 2;
+}
+
+message Handle {
+    string error = 1;
+    string message = 2;
+    STATUS status = 3;
+}
+
+message Filters {
+    string categoryMovie = 1;
+    string origin = 2;
+    string style = 3;
+    string pace = 4;
+    bool without = 5;
+}
+
+message Movie {
+    string name = 1;
+    Filters filters = 2;
+    string id = 3; 
+}
+
+message Movies {
+    repeated Movie movies = 1; 
+}
+
+
+service DatabaseService {
+    rpc Save(Movie) returns (Handle);
+    rpc Delete(Movie) returns (Handle);
+    rpc GetAll(Filters) returns (Movies);
+    rpc Get(Movie) returns (Movie);
+}
