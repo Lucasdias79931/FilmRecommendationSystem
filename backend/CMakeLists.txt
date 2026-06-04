@@ -48,3 +48,47 @@ target_link_libraries(test_runner PRIVATE
     nlohmann_json::nlohmann_json 
     oatpp::oatpp
 )
+
+
+# =======================
+# gRPC + Protobuf
+# =======================
+
+find_package(Protobuf REQUIRED)
+find_package(gRPC REQUIRED)
+
+set(PROTO_DIR ${CMAKE_SOURCE_DIR}/grpc/protofiles)
+set(PROTO_FILE ${PROTO_DIR}/database_service.proto)
+
+set(PROTO_SRCS ${CMAKE_BINARY_DIR}/database_service.pb.cc)
+set(PROTO_HDRS ${CMAKE_BINARY_DIR}/database_service.pb.h)
+set(GRPC_SRCS ${CMAKE_BINARY_DIR}/database_service.grpc.pb.cc)
+set(GRPC_HDRS ${CMAKE_BINARY_DIR}/database_service.grpc.pb.h)
+
+add_custom_command(
+    OUTPUT ${PROTO_SRCS} ${PROTO_HDRS} ${GRPC_SRCS} ${GRPC_HDRS}
+    COMMAND ${Protobuf_PROTOC_EXECUTABLE}
+    ARGS --grpc_out=${CMAKE_BINARY_DIR}
+         --cpp_out=${CMAKE_BINARY_DIR}
+         -I ${PROTO_DIR}
+         --plugin=protoc-gen-grpc=`which grpc_cpp_plugin`
+         ${PROTO_FILE}
+    DEPENDS ${PROTO_FILE}
+)
+
+add_library(grpc_proto
+    ${PROTO_SRCS}
+    ${GRPC_SRCS}
+)
+
+target_include_directories(grpc_proto PUBLIC ${CMAKE_BINARY_DIR})
+
+target_link_libraries(grpc_proto
+    PUBLIC
+    protobuf::libprotobuf
+    gRPC::grpc++
+)
+
+target_link_libraries(movie_app PRIVATE grpc_proto)
+
+target_link_libraries(test_runner PRIVATE grpc_proto)
