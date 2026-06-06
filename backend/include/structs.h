@@ -4,6 +4,7 @@
 #include "enums.h"
 
 struct Movie {
+    std::string id;
     std::string name;
     CategoryMovie category;
 
