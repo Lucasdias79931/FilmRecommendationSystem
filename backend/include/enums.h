@@ -13,7 +13,8 @@ enum class CategoryMovie {
     SciFi,
     Documentary,
     Thriller,
-    Animation
+    Animation,
+    UNKNOWN
 };
 
 

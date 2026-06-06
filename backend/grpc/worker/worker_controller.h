@@ -14,9 +14,14 @@ using database_service::Movie;
 using database_service::Movies;
 using database_service::STATUS;
 
-class Worker_Controller final : public DatabaseService::Service {
-public:
+#include "data-structures/storage.h"
 
+class Worker_Controller final : public DatabaseService::Service {
+private:
+    Storage& storage;
+public:
+    Worker_Controller(Storage& storage):storage(storage){} 
+    
     Status Save(ServerContext* context, const Movie* request, Handle* response) override ;
 
     Status Delete(ServerContext* context, const Movie* request, Handle* response) override ;
