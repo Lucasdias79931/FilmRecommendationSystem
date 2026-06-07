@@ -6,6 +6,7 @@
 #include "linked_list.h"
 #include "structs.h"
 #include "enums.h"
+#include "utils.h"
 
 using json = nlohmann::json;
 
@@ -61,9 +62,12 @@ private:
     public:
     Storage(const std::string& path) : db_path(path) {}
 
-    void addMovie(const Movie& movie) {
+    void addMovie(Movie& movie) {
         std::unique_lock lock(file_mutex);
 
+        if(movie.id.empty()){
+            movie.id = generate_uuid();
+        }
         std::ofstream file(db_path, std::ios::app);
         file << to_json(movie).dump() << "\n";
     }
@@ -88,7 +92,7 @@ private:
         return result;
     }
 
-    void updateMovie(int id, const Movie& updated) {
+    void updateMovie(std::string id, const Movie& updated) {
         std::unique_lock lock(file_mutex);
 
         std::ifstream in(db_path);
@@ -114,7 +118,7 @@ private:
         std::rename("temp.jsonl", db_path.c_str());
     }
 
-    void deleteMovie(int id) {
+    void deleteMovie(std::string id) {
         std::unique_lock lock(file_mutex);
 
         std::ifstream in(db_path);

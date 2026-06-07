@@ -56,6 +56,9 @@ target_link_libraries(test_runner PRIVATE
 
 find_package(Protobuf REQUIRED)
 find_package(gRPC REQUIRED)
+find_library(UUID_LIB uuid)
+
+
 
 set(PROTO_DIR ${CMAKE_SOURCE_DIR}/grpc/protofiles)
 set(PROTO_FILE ${PROTO_DIR}/database_service.proto)
@@ -89,6 +92,6 @@ target_link_libraries(grpc_proto
     gRPC::grpc++
 )
 
-target_link_libraries(movie_app PRIVATE grpc_proto)
+target_link_libraries(movie_app PRIVATE grpc_proto ${UUID_LIB})
 
-target_link_libraries(test_runner PRIVATE grpc_proto)
+target_link_libraries(test_runner PRIVATE grpc_proto ${UUID_LIB})

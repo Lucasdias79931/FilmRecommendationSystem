@@ -32,10 +32,13 @@ message Movies {
     repeated Movie movies = 1; 
 }
 
+message GetRequest{
+    string id = 1;
+}
 
 service DatabaseService {
     rpc Save(Movie) returns (Handle);
     rpc Delete(Movie) returns (Handle);
     rpc GetAll(Filters) returns (Movies);
-    rpc Get(Movie) returns (Movie);
+    rpc Get(GetRequest) returns (Movie);
 }

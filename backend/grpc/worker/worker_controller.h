@@ -13,6 +13,7 @@ using database_service::Handle;
 using database_service::Movie;
 using database_service::Movies;
 using database_service::STATUS;
+using database_service::GetRequest;
 
 #include "data-structures/storage.h"
 
@@ -21,12 +22,12 @@ private:
     Storage& storage;
 public:
     Worker_Controller(Storage& storage):storage(storage){} 
-    
+
     Status Save(ServerContext* context, const Movie* request, Handle* response) override ;
 
     Status Delete(ServerContext* context, const Movie* request, Handle* response) override ;
 
     Status GetAll(ServerContext* context, const Filters* request, Movies* response) override ;
 
-    Status Get(ServerContext* context, const Movie* request, Movie* response) override ;
+    Status Get(ServerContext* context, const GetRequest* request, Movie* response) override ;
 };

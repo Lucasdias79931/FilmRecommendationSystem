@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
     cmake \
     git \
     libssl-dev \
-    nlohmann-json3-dev \
+    nlohmann-json3-dev \ 
+    uuid-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /libs
