@@ -87,7 +87,14 @@ int main(int argc, char* argv[]) {
         return 1;
     }    
     
-
+    Linked_list<Movie> movies;
+    try{
+        std::cout <<"Testing get all movies"<< std::endl;
+        movies = storage.getMovies();
+    } catch (const std::exception& e){
+        std::cerr << "Erro fatal: " << e.what() << std::endl;
+        return 1;
+    }    
 
 
     return 0;
