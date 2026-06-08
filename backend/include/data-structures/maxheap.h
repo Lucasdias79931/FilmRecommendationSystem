@@ -2,14 +2,14 @@
 #include "structs.h"
 #include <vector>
 
-class Min_heap {
+class MaxHeap {
 private:
     std::vector<Movie> movies;
     size_t capacity; 
     size_t count;    
 
 public:
-    Min_heap(size_t k) : capacity(k), count(0) {
+    MaxHeap(size_t k) : capacity(k), count(0) {
         movies.reserve(k); 
     }
 

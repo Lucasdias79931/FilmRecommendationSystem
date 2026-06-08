@@ -92,6 +92,22 @@ private:
         return result;
     }
 
+    Linked_list<Movie> getMovies() {
+        std::shared_lock lock(file_mutex);
+
+        std::ifstream file(db_path);
+        Linked_list<Movie> result;
+
+        std::string line;
+
+        while (std::getline(file, line)) {
+            json j = json::parse(line);
+            Movie m = parse_movie(j);
+        }
+
+        return result;
+    }
+
     void updateMovie(std::string id, const Movie& updated) {
         std::unique_lock lock(file_mutex);
 
