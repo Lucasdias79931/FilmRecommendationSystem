@@ -19,17 +19,18 @@ message Filters {
     string origin = 2;
     string style = 3;
     string pace = 4;
-    bool without = 5;
+    float rate = 5;
 }
 
-message Movie {
+message MovieRPC {
     string name = 1;
     Filters filters = 2;
-    string id = 3; 
+    string id = 3;
+    int32 year = 4; 
 }
 
-message Movies {
-    repeated Movie movies = 1; 
+message MoviesRPC {
+    repeated MovieRPC movies = 1; 
 }
 
 message GetRequest{
@@ -37,8 +38,8 @@ message GetRequest{
 }
 
 service DatabaseService {
-    rpc Save(Movie) returns (Handle);
-    rpc Delete(Movie) returns (Handle);
-    rpc GetAll(Filters) returns (Movies);
-    rpc Get(GetRequest) returns (Movie);
+    rpc Save(MovieRPC) returns (Handle);
+    rpc Delete(GetRequest) returns (Handle);
+    rpc GetAll(Filters) returns (MoviesRPC);
+    rpc Get(GetRequest) returns (MovieRPC);
 }

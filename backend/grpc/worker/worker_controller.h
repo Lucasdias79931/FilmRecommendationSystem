@@ -10,8 +10,8 @@ using grpc::Status;
 using database_service::DatabaseService;
 using database_service::Filters;
 using database_service::Handle;
-using database_service::Movie;
-using database_service::Movies;
+using database_service::MovieRPC;
+using database_service::MoviesRPC;
 using database_service::STATUS;
 using database_service::GetRequest;
 
@@ -23,11 +23,11 @@ class Worker_Controller final : public DatabaseService::Service {
     public:
         Worker_Controller(Storage& storage):storage(storage){} 
 
-        Status Save(ServerContext* context, const Movie* request, Handle* response) override ;
+        Status Save(ServerContext* context, const MovieRPC* request, Handle* response) override ;
 
-        Status Delete(ServerContext* context, const Movie* request, Handle* response) override ;
+        Status Delete(ServerContext* context, const MovieRPC* request, Handle* response) override ;
 
-        Status GetAll(ServerContext* context, const Filters* request, Movies* response) override ;
+        Status GetAll(ServerContext* context, const Filters* request, MoviesRPC* response) override ;
 
-        Status Get(ServerContext* context, const GetRequest* request, Movie* response) override ;
+        Status Get(ServerContext* context, const GetRequest* request, MovieRPC* response) override ;
 };

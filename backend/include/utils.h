@@ -11,3 +11,4 @@ std::string generate_uuid() {
 
     return std::string(str);
 }
+
