@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <mutex>
 #include <shared_mutex>
@@ -45,6 +46,7 @@ private:
     }
 
     bool match(const Filters& f, const Movie& m) {
+        
         if (f.category != CategoryMovie::UNKNOWN && m.category != f.category)
             return false;
 

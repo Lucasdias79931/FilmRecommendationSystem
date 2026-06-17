@@ -1,5 +1,6 @@
+#pragma once
 #include <iostream>
-#include "storage.h"
+#include "data-structures/storage.h"
 
 #include "database_service.grpc.pb.h"
 #include "database_service.pb.h"
@@ -7,7 +8,7 @@
 #include "enums.h"
 
 using database_service::DatabaseService;
-using database_service::Filters;
+using database_service::FiltersRPC;
 using database_service::Handle;
 using database_service::MovieRPC;
 using database_service::MoviesRPC;
@@ -16,8 +17,9 @@ using database_service::GetRequest;
 using database_service::STATUS;
 
 class WorkerService{
-    static bool validateMovie(const MovieRPC& movie);
+    public:
+        static bool validateMovie(const MovieRPC& movie);
 
-    static Handle Save(const MovieRPC& movie, Storage& storage);
+        static Handle Save(const MovieRPC& movie, Storage& storage);
 };
 

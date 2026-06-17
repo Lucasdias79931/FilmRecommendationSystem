@@ -14,7 +14,7 @@ message Handle {
     STATUS status = 3;
 }
 
-message Filters {
+message FiltersRPC {
     string categoryMovie = 1;
     string origin = 2;
     string style = 3;
@@ -24,7 +24,7 @@ message Filters {
 
 message MovieRPC {
     string name = 1;
-    Filters filters = 2;
+    FiltersRPC filtersRPC = 2;
     string id = 3;
     int32 year = 4; 
 }
@@ -40,6 +40,6 @@ message GetRequest{
 service DatabaseService {
     rpc Save(MovieRPC) returns (Handle);
     rpc Delete(GetRequest) returns (Handle);
-    rpc GetAll(Filters) returns (MoviesRPC);
+    rpc GetAll(FiltersRPC) returns (MoviesRPC);
     rpc Get(GetRequest) returns (MovieRPC);
 }

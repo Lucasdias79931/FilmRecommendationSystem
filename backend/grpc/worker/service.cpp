@@ -2,10 +2,10 @@
 
 
 bool WorkerService::validateMovie(const MovieRPC& movie){
-    const Filters& filters = movie.filters();
+    const FiltersRPC& filtersrpc = movie.filtersrpc();
 
     
-    if(movie.name().empty() || filters.style().empty() || filters.categorymovie().empty() || filters.origin().empty() || filters.pace().empty())
+    if(movie.name().empty() || filtersrpc.style().empty() || filtersrpc.categorymovie().empty() || filtersrpc.origin().empty() || filtersrpc.pace().empty())
         return false;
 
     return true;
@@ -22,7 +22,7 @@ Handle WorkerService::Save(const MovieRPC& movie, Storage& storage){
     }
 
     try{
-        const Filters& filters = movie.filters();
+        const FiltersRPC& filters = movie.filtersrpc();
         Movie m(
             movie.name(),
             stringToCategory(filters.categorymovie()),
@@ -40,7 +40,7 @@ Handle WorkerService::Save(const MovieRPC& movie, Storage& storage){
         return handle;
     }catch(const std::exception& e){
         handle.set_status(STATUS::FAILURE);
-        handle.set_error(e);
+        handle.set_error(e.what());
         return handle;
     }
     
