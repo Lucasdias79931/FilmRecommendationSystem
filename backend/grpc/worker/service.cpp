@@ -45,3 +45,22 @@ Handle WorkerService::Save(const MovieRPC& movie, Storage& storage){
     }
     
 }
+
+
+Handle WorkerService::Delete(const std::string& id, Storage& storage){
+    Handle handle;
+
+    handle.set_status(STATUS::PROCESSING);
+
+    try{
+        storage.deleteMovie(id);
+    }catch(const std::exception& e){
+        handle.set_status(STATUS::FAILURE);
+        handle.set_error(e.what());
+        return handle;
+    }
+
+    handle.set_status(STATUS::DONE);
+    handle.set_message("movie deleted");
+    return handle;
+}
