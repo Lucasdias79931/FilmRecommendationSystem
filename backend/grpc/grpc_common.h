@@ -4,6 +4,8 @@
 
 #include "database_service.grpc.pb.h"
 #include "database_service.pb.h"
+#include "structs.h"
+#include "enums.h"
 
 using grpc::ServerContext;
 using grpc::Status;
