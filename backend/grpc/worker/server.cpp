@@ -22,9 +22,16 @@ void server(std::string server_address, Storage& storage){
 
 int main(int argc, char* argv[]) {
 
-    Storage storage("../../data/db.json");
+    std::string db_path = DB_PATH;
+    if(argc > 1){
+        db_path = argv[1];
+    }
+
+    Storage storage(db_path);
+
     std::string server_address = "0.0.0.0:50051";
 
+    
     server(server_address, storage);
 
     return 0;

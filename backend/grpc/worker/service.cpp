@@ -1,23 +1,43 @@
 #include "service.h"
 
 
-bool WorkerService::validateMovie(const MovieRPC& movie){
-    const FiltersRPC& filtersrpc = movie.filtersrpc();
+std::optional<std::string> WorkerService::validateMovie(const MovieRPC& movie) {
+    if (movie.name().empty())
+        return "name is empty";
 
-    
-    if(movie.name().empty() || filtersrpc.style().empty() || filtersrpc.categorymovie().empty() || filtersrpc.origin().empty() || filtersrpc.pace().empty())
-        return false;
+    if (!movie.has_filtersrpc())
+        return "filtersrpc is missing";
 
-    return true;
+    const FiltersRPC& f = movie.filtersrpc();
+
+    if (f.style().empty())
+        return "style is empty";
+
+    if (f.categorymovie().empty())
+        return "categorymovie is empty";
+
+    if (f.origin().empty())
+        return "origin is empty";
+
+    if (f.pace().empty())
+        return "pace is empty";
+
+    if (movie.year() < 1888 || movie.year() > 2100)
+        return "year is invalid";
+
+    if (f.rate() < 0.0 || f.rate() > 10.0)
+        return "rate must be between 0 and 10";
+
+    return std::nullopt;
 }
 
 
 Handle WorkerService::Save(const MovieRPC& movie, Storage& storage){
     Handle handle;
 
-    if(!WorkerService::validateMovie(movie)){
+    if(WorkerService::validateMovie(movie).has_value()){
         handle.set_status(STATUS::FAILURE);
-        handle.set_error("PAYLOAD ERROR");
+        handle.set_error("Invalid values to movie. Verify correct payload");
         return handle;
     }
 

@@ -5,6 +5,8 @@
 #include "data-structures/storage.h"
 #include "structs.h"
 #include "enums.h"
+#include "grpc_common.h"
+#include "master/grpc_master.h"
 
 
 void test_add_storage(Storage& storage){
@@ -51,6 +53,33 @@ void test_decision_tree(std::string& db_path){
     decision_tree.list_filters();
 }
 
+void test_save_movie_grpc(){
+    MovieRPC movie;
+    movie.set_name("black_panther");
+    movie.set_year(2018);
+    movie.set_id(generate_uuid());
+
+    FiltersRPC *filters = movie.mutable_filtersrpc();
+    
+    filters->set_pace("slow");
+    filters->set_origin("foreing");
+    filters->set_style("Action");
+    filters->set_rate(10.0);
+    filters->set_categorymovie("Action");
+    
+    std::shared_ptr<grpc::Channel>  channel = grpc::CreateChannel(
+        "localhost:50051",
+        grpc::InsecureChannelCredentials()
+    );
+
+    Master master(channel);
+
+    Handle handle = master.Save(movie);
+
+    std::cout << "Message response: " <<  handle.message() << std::endl;
+    std::cout << "Status  response: " << handle.status()<< std::endl;
+    std::cout << "Error   response: " << handle.error()<< std::endl;
+}
 
 
 int main(int argc, char* argv[]) {
@@ -96,6 +125,14 @@ int main(int argc, char* argv[]) {
         return 1;
     }    
 
+
+    try{
+        test_save_movie_grpc();
+
+    }catch (const std::exception& e){
+        std::cerr << "Erro fatal: " << e.what() << std::endl;
+        return 1;
+    }    
 
     return 0;
 }
