@@ -57,19 +57,23 @@ target_link_libraries(grpc_proto
     gRPC::grpc++
 )
 
-
+# 🔽 ADIÇÃO AQUI (master incluído no core)
 file(GLOB_RECURSE CORE_SOURCES
     lib/*.cpp
     grpc/worker/service.cpp
+    grpc/master/*.cpp
 )
 
 add_library(core ${CORE_SOURCES})
 
 target_include_directories(core PUBLIC
+
     include
+    ${CMAKE_SOURCE_DIR}/data
     ${GEN_DIR}
     ${CMAKE_SOURCE_DIR}/data-structures
 )
+
 
 target_link_libraries(core
     PUBLIC
@@ -87,6 +91,7 @@ add_executable(movie_app
 )
 
 target_include_directories(movie_app PRIVATE
+    
     include
     ${GEN_DIR}
 )
@@ -123,6 +128,9 @@ target_link_libraries(rpc_server
 
 add_dependencies(rpc_server grpc_proto)
 
+target_compile_definitions(rpc_server PRIVATE
+    DB_PATH="${CMAKE_SOURCE_DIR}/data/db.json"
+)
 # =======================
 # 🛠️ GERADOR DE BANCO
 # =======================
@@ -142,10 +150,7 @@ target_link_libraries(generate_db
 # 🧪 TESTES
 # =======================
 
-file(GLOB_RECURSE TEST_SOURCES
-    lib/*.cpp
-    grpc/worker/service.cpp
-)
+
 
 add_executable(test_runner
     tests/test.cpp
@@ -154,6 +159,7 @@ add_executable(test_runner
 
 target_include_directories(test_runner PRIVATE
     include
+    grpc
     ${GEN_DIR}
 )
 
@@ -163,5 +169,7 @@ target_link_libraries(test_runner
     oatpp::oatpp
     grpc_proto
 )
+
+
 
 add_dependencies(test_runner grpc_proto)
