@@ -2,8 +2,7 @@
 #include "../grpc_common.h"
 #include "data-structures/storage.h"
 
-#include "structs.h"
-#include "enums.h"
+
 
 
 class WorkerService{
