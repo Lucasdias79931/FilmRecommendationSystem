@@ -53,11 +53,11 @@ void test_decision_tree(std::string& db_path){
     decision_tree.list_filters();
 }
 
-void test_save_movie_grpc(){
+void test_save_movie_grpc(Master &master, std::string& id){
     MovieRPC movie;
     movie.set_name("black_panther");
     movie.set_year(2018);
-    movie.set_id(generate_uuid());
+    movie.set_id(id);
 
     FiltersRPC *filters = movie.mutable_filtersrpc();
     
@@ -66,19 +66,40 @@ void test_save_movie_grpc(){
     filters->set_style("Action");
     filters->set_rate(10.0);
     filters->set_categorymovie("Action");
+
+    std::cout << "Testing Save method" << std::endl;
     
-    std::shared_ptr<grpc::Channel>  channel = grpc::CreateChannel(
-        "localhost:50051",
-        grpc::InsecureChannelCredentials()
-    );
+    try{
 
-    Master master(channel);
+    
+        Handle handle = master.Save(movie);
+        std::cout << "Message response: " <<  handle.message() << std::endl;
+        std::cout << "Status  response: " << handle.status()<< std::endl;
+        std::cout << "Error   response: " << handle.error()<< std::endl;
+    }catch (const std::exception& e){
+        std::cerr << "Erro fatal: " << e.what() << std::endl;
+        
+    }    
+    
+}
 
-    Handle handle = master.Save(movie);
+void test_delete_movie(Master &master, std::string& id){
+    GetRequest req;
 
-    std::cout << "Message response: " <<  handle.message() << std::endl;
-    std::cout << "Status  response: " << handle.status()<< std::endl;
-    std::cout << "Error   response: " << handle.error()<< std::endl;
+    req.set_id(id);
+    std::cout << "Testing Delete method" << std::endl;
+
+    
+    try{
+        Handle handle = master.Delete(id);
+        std::cout << "Message response: " <<  handle.message() << std::endl;
+        std::cout << "Status  response: " << handle.status()<< std::endl;
+        std::cout << "Error   response: " << handle.error()<< std::endl;
+    }catch (const std::exception& e){
+        std::cerr << "Erro fatal: " << e.what() << std::endl;
+        
+    }    
+    
 }
 
 
@@ -125,14 +146,20 @@ int main(int argc, char* argv[]) {
         return 1;
     }    
 
+    std::cout << "Testing rpc methods"<< std::endl;
 
-    try{
-        test_save_movie_grpc();
+    std::shared_ptr<grpc::Channel>  channel = grpc::CreateChannel(
+        "localhost:50051",
+        grpc::InsecureChannelCredentials()
+    );
 
-    }catch (const std::exception& e){
-        std::cerr << "Erro fatal: " << e.what() << std::endl;
-        return 1;
-    }    
+    Master master(channel);
+    std::string id = generate_uuid();
+    
+        
+    test_save_movie_grpc(master, id);
+    test_delete_movie(master, id);
+    
 
     return 0;
 }
