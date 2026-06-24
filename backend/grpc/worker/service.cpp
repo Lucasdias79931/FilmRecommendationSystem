@@ -85,3 +85,33 @@ Handle WorkerService::Delete(const std::string& id, Storage& storage){
     handle.set_message("movie deleted");
     return handle;
 }
+
+void WorkerService::GetAll(const FiltersRPC& filters, Storage& storage, MoviesRPC& movies){
+
+    Filters filters_parse;
+    filters_parse.category = stringToCategory(filters.categorymovie());
+    filters_parse.origin = filters.origin();
+    filters_parse.pace = filters.pace();
+    filters_parse.style = filters.style();
+    
+    try{
+        Linked_list<Movie> list_movies = storage.getMovies(filters_parse);
+
+        const Linear_node<Movie>* walk = list_movies.getNode();
+
+        while (walk != nullptr) {
+            const Movie& movie = walk->data;
+
+            
+            auto* m = movies.add_movies();
+            m->set_id(movie.id);
+            
+            walk = walk->next;
+        }
+
+    }catch(const std::exception& e){
+        movies.set_status(STATUS::FAILURE);
+        movies.set_error(e.what());
+    }
+
+}

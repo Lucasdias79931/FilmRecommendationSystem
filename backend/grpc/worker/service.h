@@ -13,7 +13,8 @@ class WorkerService{
 
 
         static Handle Delete(const std::string& id, Storage& storage);
-        //GetAll(FiltersRPC) returns (MoviesRPC);
+        static void GetAll(const FiltersRPC& filters, Storage& storage, MoviesRPC& movies);
+        
         //Get(GetRequest) returns (MovieRPC);
 };
 

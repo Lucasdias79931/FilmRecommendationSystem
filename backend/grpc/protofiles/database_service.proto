@@ -30,7 +30,9 @@ message MovieRPC {
 }
 
 message MoviesRPC {
-    repeated MovieRPC movies = 1; 
+    repeated MovieRPC movies = 1;
+    string error = 2;
+    STATUS status = 3; 
 }
 
 message GetRequest{

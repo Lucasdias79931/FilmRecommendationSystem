@@ -31,9 +31,13 @@ Status Worker_Controller::Delete(ServerContext* context, const GetRequest* reque
         return Status(grpc::StatusCode::INTERNAL, e.what());
     }
 }
-
 Status Worker_Controller::GetAll(ServerContext* context, const FiltersRPC* request, MoviesRPC* response) {
-    return Status::OK;
+    try{
+        WorkerService::GetAll(*request, storage, *response);
+        return Status::OK; 
+    }catch(const std::exception& e){
+        return Status(grpc::StatusCode::INTERNAL, e.what());
+    }
 }
 
 Status Worker_Controller::Get(ServerContext* context, const GetRequest* request, MovieRPC* response) {
