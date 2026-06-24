@@ -68,5 +68,13 @@ struct Filters {
     std::string origin;
     std::string style;
     std::string pace;
+    
+    Filters(){}
+
+    Filters(CategoryMovie& category,
+    std::string& origin,
+    std::string& style,
+    std::string& pace)
+    : category(category), origin(origin), style(style), pace(pace){}
 };
 
