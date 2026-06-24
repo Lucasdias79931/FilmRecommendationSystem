@@ -103,6 +103,38 @@ void test_delete_movie(Master &master, std::string& id){
 }
 
 
+void test_getAll_movie(Master &master){
+   
+    std::cout << "Testing GetAll method" << std::endl;
+
+    FiltersRPC filters;
+
+    try{
+        MoviesRPC movies = master.GetAll(filters);
+
+        std::cout << "Status  response: " << movies.status() << std::endl;
+        std::cout << "Error   response: " << movies.error() << std::endl;
+
+        for (const MovieRPC& movie : movies.movies()) {
+            std::cout << "------------------------" << std::endl;
+            std::cout << "ID: " << movie.id() << std::endl;
+            std::cout << "Name: " << movie.name() << std::endl;
+            std::cout << "Year: " << movie.year() << std::endl;
+
+            const auto& f = movie.filtersrpc();
+            std::cout << "Category: " << f.categorymovie() << std::endl;
+            std::cout << "Origin: " << f.origin() << std::endl;
+            std::cout << "Style: " << f.style() << std::endl;
+            std::cout << "Pace: " << f.pace() << std::endl;
+            std::cout << "Rate: " << f.rate() << std::endl;
+        }
+
+    }catch (const std::exception& e){
+        std::cerr << "Erro fatal: " << e.what() << std::endl;
+    }    
+    
+}
+
 int main(int argc, char* argv[]) {
     test_list();
 
@@ -158,6 +190,7 @@ int main(int argc, char* argv[]) {
     
         
     test_save_movie_grpc(master, id);
+    test_getAll_movie(master);
     test_delete_movie(master, id);
     
 

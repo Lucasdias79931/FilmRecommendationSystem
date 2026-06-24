@@ -64,17 +64,16 @@ struct Linear_node{
 
 
 struct Filters {
-    CategoryMovie category;
-    std::string origin;
-    std::string style;
-    std::string pace;
-    
-    Filters(){}
+    CategoryMovie category = CategoryMovie::UNKNOWN;
+    std::string origin = "";
+    std::string style = "";
+    std::string pace = "";
 
-    Filters(CategoryMovie& category,
-    std::string& origin,
-    std::string& style,
-    std::string& pace)
-    : category(category), origin(origin), style(style), pace(pace){}
+    Filters() = default;
+
+    Filters(CategoryMovie category,
+            const std::string& origin,
+            const std::string& style,
+            const std::string& pace)
+        : category(category), origin(origin), style(origin), pace(pace) {}
 };
-

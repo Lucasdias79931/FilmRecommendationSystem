@@ -1,6 +1,5 @@
 #include "grpc_master.h"
 
-using grpc::ClientContext;
 
 Master::Master(std::shared_ptr<grpc::Channel> channel) : stub_(DatabaseService::NewStub(channel)) {}
 
@@ -31,6 +30,19 @@ Handle Master::Delete(std::string& id) {
     }
 
     return response;
+}
+
+MoviesRPC Master::GetAll(FiltersRPC& filters){
+    ClientContext context;
+    MoviesRPC movies;
+
+    Status status = stub_->GetAll(&context, filters, &movies);
+
+    if (!status.ok()) {
+        throw std::runtime_error(status.error_message());
+    }
+
+    return movies;
 }
 
 

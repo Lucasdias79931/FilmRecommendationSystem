@@ -17,6 +17,9 @@ std::string toString(CategoryMovie category) {
 
 
 CategoryMovie stringToCategory(const std::string& str) {
+
+    if (str.empty()) return CategoryMovie::UNKNOWN; // ✅ ESSENCIAL
+
     if (str == "Romance") return CategoryMovie::Romance;
     if (str == "Action") return CategoryMovie::Action;
     if (str == "Comedy") return CategoryMovie::Comedy;
@@ -27,5 +30,5 @@ CategoryMovie stringToCategory(const std::string& str) {
     if (str == "Thriller") return CategoryMovie::Thriller;
     if (str == "Animation") return CategoryMovie::Animation;
 
-    throw std::invalid_argument("Invalid CategoryMovie: " + str);
+    return CategoryMovie::UNKNOWN; 
 }

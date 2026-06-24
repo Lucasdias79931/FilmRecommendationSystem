@@ -105,8 +105,19 @@ void WorkerService::GetAll(const FiltersRPC& filters, Storage& storage, MoviesRP
             
             auto* m = movies.add_movies();
             m->set_id(movie.id);
+            m->set_name(movie.name);
+            m->set_year(movie.year);
+            
+            
+            auto* f = m->mutable_filtersrpc();
+
+            f->set_categorymovie(toString(movie.category));
+            f->set_pace(movie.pace);
+            f->set_rate(movie.rate);
+            f->set_style(movie.style);
             
             walk = walk->next;
+
         }
 
     }catch(const std::exception& e){
