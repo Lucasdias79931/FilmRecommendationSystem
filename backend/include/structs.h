@@ -22,6 +22,25 @@ struct Movie {
         const std::string& style,
         const std::string& pace,
         size_t year,
+        float rate,
+        const std::string& id
+    )
+    : name(name),
+      category(category),
+      origin(origin),
+      style(style),
+      pace(pace),
+      year(year),
+      rate(rate),
+      id(id) {}
+
+    Movie(
+        const std::string& name,
+        CategoryMovie category,
+        const std::string& origin,
+        const std::string& style,
+        const std::string& pace,
+        size_t year,
         float rate
     )
     : name(name),
@@ -30,7 +49,7 @@ struct Movie {
       style(style),
       pace(pace),
       year(year),
-      rate(rate) {}
+      rate(rate){}
 };
 
 

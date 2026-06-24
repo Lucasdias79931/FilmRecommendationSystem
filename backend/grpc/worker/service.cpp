@@ -50,7 +50,8 @@ Handle WorkerService::Save(const MovieRPC& movie, Storage& storage){
             filters.style(),
             filters.pace(),
             movie.year(),
-            filters.rate()
+            filters.rate(),
+            movie.id()
         );
 
         storage.addMovie(m);

@@ -127,20 +127,40 @@ void Storage::deleteMovie(std::string id) {
     std::ifstream in(db_path);
     std::ofstream out("temp.jsonl");
 
+    if (!in.is_open() || !out.is_open()) {
+        throw std::runtime_error("Erro ao abrir arquivos");
+    }
+
     std::string line;
+    bool removed = false;
 
     while (std::getline(in, line)) {
-        json j = json::parse(line);
-        Movie m = parse_movie(j);
+        try {
+            json j = json::parse(line);
+            Movie m = parse_movie(j);
 
-        if (m.id != id) {
-            out << line << "\n";
+            if (m.id != id) {
+                out << line << "\n";
+            } else {
+                removed = true;
+            }
+        } catch (...) {
+            continue; 
         }
     }
 
     in.close();
     out.close();
 
-    std::remove(db_path.c_str());
-    std::rename("temp.jsonl", db_path.c_str());
+    if (!removed) {
+        throw std::runtime_error(std::string("ID não encontrado" + id));
+    }
+
+    if (std::remove(db_path.c_str()) != 0) {
+        throw std::runtime_error("Erro ao remover arquivo original");
+    }
+
+    if (std::rename("temp.jsonl", db_path.c_str()) != 0) {
+        throw std::runtime_error("Erro ao renomear arquivo");
+    }
 }
